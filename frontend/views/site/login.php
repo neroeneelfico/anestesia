@@ -23,12 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                <?= $form->field($model, 'rememberMe')->checkbox()->label('Ricordami') ?>
 
-                <div style="color:#999;margin:1em 0">
-                    Se hai dimenticato la tua password la puoi <?= Html::a('recuperare', ['site/request-password-reset']) ?>.
-                    <br>
-                </div>
 
                 <div class="form-group">
                     <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
