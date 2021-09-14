@@ -64,8 +64,7 @@ class UsersSearch extends User
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'nome', $this->nome])
+        $query->andFilterWhere(['like', 'nome', $this->nome])
             ->andFilterWhere(['like', 'cognome', $this->cognome])
             ->andFilterWhere(['like', 'codicefiscale', $this->codicefiscale])
             ->andFilterWhere(['like', 'residenza', $this->residenza])
