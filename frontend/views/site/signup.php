@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
             Se la tua residenza appartiene ad una di queste città e vuoi usufruire della priorità selezionala da questa casella
-            <?=$form->field($model, 'residenza')->dropDownList(['' => 'Nessuna priorità', 'Caltanissetta' => 'Caltanissetta','Agrigento'=>'Agrigento','Trapani'=>'Trapani', 'Bagheria'=>'Bagheria','Cefalù'=>'Cefalù'],['prompt'=>'Seleziona una città'])->label('');?>
+            <?=$form->field($model, 'residenza')->dropDownList(['' => 'Nessuna priorità', 'Caltanissetta' => 'Caltanissetta','Agrigento'=>'Agrigento','Trapani'=>'Trapani','Cefalù'=>'Cefalù'],['prompt'=>'Seleziona una città'])->label('');?>
                 <div class="form-group">
                     <?= Html::submitButton('Registrati', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                 </div>

@@ -17,11 +17,11 @@ $this->title = 'Login';
 
         <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+        <?= $form->field($model, 'codicefiscale')->textInput(['autofocus' => true])->widget(\yii\widgets\MaskedInput::className(),['name'=>'Codice Fiscale','mask' => 'AAAAAA99A99A999A'])->label("Codice Fiscale") ?>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+        <?= $form->field($model, 'password')->passwordInput() ?>
 
-            <?= $form->field($model, 'rememberMe')->checkbox() ?>
+        <?= $form->field($model, 'rememberMe')->checkbox()->label('Ricordami') ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
