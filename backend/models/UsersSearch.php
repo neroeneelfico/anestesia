@@ -67,12 +67,7 @@ class UsersSearch extends User
         $query->andFilterWhere(['like', 'nome', $this->nome])
             ->andFilterWhere(['like', 'cognome', $this->cognome])
             ->andFilterWhere(['like', 'codicefiscale', $this->codicefiscale])
-            ->andFilterWhere(['like', 'residenza', $this->residenza])
-            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
-            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
-            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'verification_token', $this->verification_token]);
+            ->andFilterWhere(['like', 'residenza', $this->residenza]);
 
         return $dataProvider;
     }
