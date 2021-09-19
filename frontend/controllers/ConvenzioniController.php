@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use app\models\Convenzioni;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -37,6 +38,7 @@ class ConvenzioniController extends Controller
      */
     public function actionIndex()
     {
+       // $conteggio = ArrayHelper::map(Convenzioni::find()->where([]))
         $dataProvider = new ActiveDataProvider([
             'query' => Convenzioni::find(),
             /*

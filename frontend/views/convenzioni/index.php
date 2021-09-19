@@ -2,6 +2,12 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use kartik\select2\Select2;
+use yii\bootstrap4\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\Convenzioni;
+
+
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,6 +36,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
+    <?php $form = ActiveForm::begin(['id' => 'convenzioni-form']); ?>
+    <?=
+    $form->field($dataProvider, 'id')
+        ->dropDownList(
+            ArrayHelper::map(Convenzioni::find()->asArray()->all(), 'id', 'name')
+        )
+    ?>
 
 </div>
