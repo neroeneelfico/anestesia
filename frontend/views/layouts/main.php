@@ -41,6 +41,9 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Registrati', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+        $menuItems = [
+            ['label' => 'Convenzioni', 'url' => ['/convenzioni/index']],
+        ];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
             . Html::submitButton(

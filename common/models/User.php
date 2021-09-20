@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use DateTime;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -25,6 +26,9 @@ use yii\web\IdentityInterface;
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
+ * @property integer $convenzioni_id
+ * @property string $convenzioni_tempo
+
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -60,6 +64,11 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            ['convenzioni_id', 'safe'],
+            ['convenzioni_tempo', 'safe'],
+            [['convenzioni_tempo'], 'TimeValidate', 'skipOnEmpty' => false, 'skipOnError' => false],
+
+
         ];
     }
 
@@ -217,5 +226,21 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+    public function TimeValidate($attribute){
+        $tempoinserito = User::find()->where(['id' => Yii::$app->user->identity])->one();
+        $tempoinserito = $tempoinserito->convenzioni_tempo;
+        if($tempoinserito != ""){
+            $datainserita = new DateTime($tempoinserito);
+            $dataattuale = date('Y-m-d H:i:s');
+            $dataattuale = new DateTime($dataattuale);
+            $since_start = $dataattuale->diff($datainserita);
+            $minutes = $since_start->days * 24 * 60;
+            $minutes += $since_start->h * 60;
+            $minutes += $since_start->i;
+            if($minutes < 720)
+                $this->addError($attribute, 'Devono ancora trascorrere '.(720 -$minutes). ' minuti per potere effettuare il cambio');
+
+        }
     }
 }

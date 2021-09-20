@@ -1,47 +1,63 @@
 <?php
 
-use yii\helpers\Html;
-use yii\grid\GridView;
-use kartik\select2\Select2;
+use common\models\Convenzioni;
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\ArrayHelper;
-use app\models\Convenzioni;
-
-
+use yii\helpers\Html;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
+/* @var $searchModel common\models\ConvenzioniSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Convenzionis';
+$this->title = 'Convenzioni';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="convenzioni-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+<!--
     <p>
         <?= Html::a('Create Convenzioni', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+-->
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        //'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'titolo',
             'citta',
             'quantitamax',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                    'label' => 'Selezionati',
+                    'value' => function ($model){
+                        return $model->getQuanti();
+                    }
+            ],
+           // ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-    <?php $form = ActiveForm::begin(['id' => 'convenzioni-form']); ?>
+
+    <br>
+    <br>
+    <b>Scegli il tuo gruppo</b>
+    <?php $form = ActiveForm::begin(); ?>
     <?=
-    $form->field($dataProvider, 'id')
+    $form->field($model, 'convenzioni_id')
         ->dropDownList(
-            ArrayHelper::map(Convenzioni::find()->asArray()->all(), 'id', 'name')
-        )
+            ArrayHelper::map(Convenzioni::find()->asArray()->all(), 'id', 'titolo')
+        )->label("");
     ?>
+    <?=
+    $form->field($model, 'convenzioni_tempo')->hiddenInput(['value'=> date('Y-m-d H:i:s')])->label(false);
+    ?>
+
+    <div class="form-group">
+        <?= Html::submitButton('Aggiorna il tuo gruppo', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+    </div>
+    <?php ActiveForm::end(); ?>
+    <?= $form->errorSummary($model); ?>
 
 </div>

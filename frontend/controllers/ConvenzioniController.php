@@ -2,10 +2,12 @@
 
 namespace frontend\controllers;
 
-use app\models\Convenzioni;
-use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
+use common\models\Convenzioni;
+use common\models\ConvenzioniSearch;
+use common\models\User;
+use Yii;
 use yii\web\Controller;
+use yii\web\IdentityInterface;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -38,22 +40,19 @@ class ConvenzioniController extends Controller
      */
     public function actionIndex()
     {
-       // $conteggio = ArrayHelper::map(Convenzioni::find()->where([]))
-        $dataProvider = new ActiveDataProvider([
-            'query' => Convenzioni::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
-        ]);
+        $searchModel = new ConvenzioniSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+        $model = Yii::$app->user->identity;
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save(['convenzioni_id','convenzioni_tempo'])) {
+            Yii::$app->session->setFlash('success', 'La tua scelta è stata registrata. Sarà possibile effettuare una nuova scelta tra 12 ore.');
+            return $this->redirect(['index']);
+        }
+
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $model,
         ]);
     }
 

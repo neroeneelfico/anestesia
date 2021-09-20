@@ -11,6 +11,7 @@ return [
     'name' => 'Anestesia',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'IT-it',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [

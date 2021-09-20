@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Convenzioni */
+/* @var $model common\models\Convenzioni */
 
 $this->title = 'Create Convenzioni';
 $this->params['breadcrumbs'][] = ['label' => 'Convenzionis', 'url' => ['index']];
