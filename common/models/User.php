@@ -238,8 +238,8 @@ class User extends ActiveRecord implements IdentityInterface
             $minutes = $since_start->days * 24 * 60;
             $minutes += $since_start->h * 60;
             $minutes += $since_start->i;
-            if($minutes < 720)
-                $this->addError($attribute, 'Devono ancora trascorrere '.(720 -$minutes). ' minuti per potere effettuare il cambio');
+            if($minutes < 360)
+                $this->addError($attribute, 'Devono ancora trascorrere '.(360 -$minutes). ' minuti per potere effettuare il cambio');
 
         }
     }
