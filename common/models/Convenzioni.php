@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
 
@@ -12,7 +12,6 @@ use Yii;
  * @property string $citta
  * @property int $quantitamax
  *
- * @property UserHasConvenzioni[] $userHasConvenzionis
  * @property User[] $users
  */
 class Convenzioni extends \yii\db\ActiveRecord
@@ -47,29 +46,29 @@ class Convenzioni extends \yii\db\ActiveRecord
             'id' => 'ID',
             'titolo' => 'Titolo',
             'citta' => 'Citta',
-            'quantitamax' => 'Quantitamax',
+            'quantitamax' => 'Capienza',
         ];
-    }
-
-    /**
-     * Gets query for [[UserHasConvenzionis]].
-     *
-     * @return \yii\db\ActiveQuery|UserHasConvenzioniQuery
-     */
-    public function getUserHasConvenzionis()
-    {
-        return $this->hasMany(UserHasConvenzioni::className(), ['convenzioni_id' => 'id']);
     }
 
     /**
      * Gets query for [[Users]].
      *
-     * @return \yii\db\ActiveQuery|UserQuery
+     * @return \yii\db\ActiveQuery|yii\db\ActiveQuery
      */
     public function getUsers()
     {
-        return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('user_has_convenzioni', ['convenzioni_id' => 'id']);
+        return $this->hasMany(User::className(), ['convenzioni_id' => 'id']);
     }
+
+    /**
+     *
+     * @return \yii\db\ActiveQuery|yii\db\ActiveQuery
+     */
+    public function getQuanti()
+    {
+        return $this->getUsers()->count();
+    }
+
 
     /**
      * {@inheritdoc}
