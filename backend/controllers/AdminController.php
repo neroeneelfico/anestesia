@@ -30,7 +30,7 @@ class AdminController extends Controller
                             'allow' => true,
                         ],
                         [
-                            'actions' => ['logout', 'index','view','update'],
+                            'actions' => ['logout', 'index','view','update','delete'],
                             'allow' => true,
                             'roles' => ['@'],
                         ],

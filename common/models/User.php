@@ -228,19 +228,21 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
     public function TimeValidate($attribute){
-        $tempoinserito = User::find()->where(['id' => Yii::$app->user->identity])->one();
-        $tempoinserito = $tempoinserito->convenzioni_tempo;
-        if($tempoinserito != ""){
-            $datainserita = new DateTime($tempoinserito);
-            $dataattuale = date('Y-m-d H:i:s');
-            $dataattuale = new DateTime($dataattuale);
-            $since_start = $dataattuale->diff($datainserita);
-            $minutes = $since_start->days * 24 * 60;
-            $minutes += $since_start->h * 60;
-            $minutes += $since_start->i;
-            if($minutes < 360)
-                $this->addError($attribute, 'Devono ancora trascorrere '.(360 -$minutes). ' minuti per potere effettuare il cambio');
+        if(Yii::$app->user->identity != "") {
+            $tempoinserito = User::find()->where(['id' => Yii::$app->user->identity])->one();
+            $tempoinserito = $tempoinserito->convenzioni_tempo;
+            if ($tempoinserito != "") {
+                $datainserita = new DateTime($tempoinserito);
+                $dataattuale = date('Y-m-d H:i:s');
+                $dataattuale = new DateTime($dataattuale);
+                $since_start = $dataattuale->diff($datainserita);
+                $minutes = $since_start->days * 24 * 60;
+                $minutes += $since_start->h * 60;
+                $minutes += $since_start->i;
+                if ($minutes < 360)
+                    $this->addError($attribute, 'Devono ancora trascorrere ' . (360 - $minutes) . ' minuti per potere effettuare il cambio');
 
+            }
         }
     }
 }
