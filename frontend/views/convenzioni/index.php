@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
     $dataattuale = date('Y-m-d H:i:s');
     $dataattuale = new DateTime($dataattuale);
-    $datainserita = new DateTime("2021-09-24 23:59:59");
+    $datainserita = new DateTime("2021-09-23 23:59:59");
     $since_start = $datainserita->diff($dataattuale);
     $minutes = 0;
     $hours = 0;
