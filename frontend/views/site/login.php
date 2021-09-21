@@ -25,8 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::checkbox('reveal-password', false, ['id' => 'reveal-password']) ?> <?= Html::label('Mostra password', 'reveal-password') ?>
 
 
-            <?= $form->field($model, 'rememberMe')->checkbox()->label('Ricordami') ?>
-
+          <!--  <?= $form->field($model, 'rememberMe')->checkbox()->label('Ricordami') ?>
+-->
 
                 <div class="form-group">
                     <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
