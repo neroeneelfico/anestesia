@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
     Inserendo la scelta si potrà vedere quante persone l'hanno selezionata (e quindi capire se è in esubero o meno) e si potrà cambiare più volte la propria risposta nell'arco di tempo stabilito (2 giorni, scelta ogni 6h).<br><br>
 
     Alla fine del tempo SE non si sarà riusciti a distribuire nelle varie rotazioni da soli rispettando i numeri richiesti  AVVERRÀ IL SORTEGGIO per le rotazioni IN CUI CI SONO PERSONE IN ECCESSO, queste persone dovranno andare a saturare le rotazioni rimaste senza unità qualunque esse siano (a questo punto dove si finisce si finisce, NON VERRANNO RIMESSI TUTTI IN GIOCO ma solo quelli nelle rotazioni in esubero)
-    <br><br>
+    <br><?= Yii::$app->user->identity ?><br>
     <?php
     $dataattuale = date('Y-m-d H:i:s');
     $dataattuale = new DateTime($dataattuale);
