@@ -231,7 +231,7 @@ class User extends ActiveRecord implements IdentityInterface
         if(Yii::$app->user->identity != "") {
             $tempoinserito = User::find()->where(['id' => Yii::$app->user->identity])->one();
             $tempoinserito = $tempoinserito->convenzioni_tempo;
-            if ($tempoinserito != "") {
+            if (($tempoinserito != "") && (!is_null($tempoinserito))) {
                 $datainserita = new DateTime($tempoinserito);
                 $dataattuale = date('Y-m-d H:i:s');
                 $dataattuale = new DateTime($dataattuale);
