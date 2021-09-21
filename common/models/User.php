@@ -228,8 +228,8 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
     public function TimeValidate($attribute){
-        if(Yii::$app->user->identity != "") {
-            $tempoinserito = User::find()->where(['id' => Yii::$app->user->identity])->one();
+        if(Yii::$app->user->id != "") {
+            $tempoinserito = User::find()->where(['id' => Yii::$app->user->id])->one();
             $tempoinserito = $tempoinserito->convenzioni_tempo;
             if (($tempoinserito != "") && (!is_null($tempoinserito))) {
                 $datainserita = new DateTime($tempoinserito);
