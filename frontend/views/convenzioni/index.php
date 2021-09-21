@@ -14,7 +14,6 @@ $this->title = 'Convenzioni';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="convenzioni-index">
-
 <!--
     <p>
         <?= Html::a('Create Convenzioni', ['create'], ['class' => 'btn btn-success']) ?>
@@ -64,6 +63,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
 
     <?php $form = ActiveForm::begin(); ?>
+    <?= $form->errorSummary($model); ?>
+
     <?=
     $form->field($model, 'convenzioni_id')
         ->dropDownList(
@@ -78,6 +79,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::submitButton('Seleziona convenzione', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
     </div>
     <?php ActiveForm::end(); ?>
-    <?= $form->errorSummary($model); ?>
+
 
 </div>
