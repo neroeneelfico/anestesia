@@ -30,8 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'quantitamax',
             [
                     'label' => 'Selezionati',
+                    'format' => 'raw',
                     'value' => function ($model){
-                        return $model->getQuanti();
+                        return Html::a($model->getQuanti(),['convenzioni/elenco','id'=>$model->id]);
                     }
             ],
            // ['class' => 'yii\grid\ActionColumn'],

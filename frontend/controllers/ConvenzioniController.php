@@ -2,10 +2,12 @@
 
 namespace frontend\controllers;
 
+use common\models\UsersSearch;
 use common\models\Convenzioni;
 use common\models\ConvenzioniSearch;
 use common\models\User;
 use Yii;
+use yii\base\BaseObject;
 use yii\web\Controller;
 use yii\web\IdentityInterface;
 use yii\web\NotFoundHttpException;
@@ -53,6 +55,18 @@ class ConvenzioniController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'model' => $model,
+        ]);
+    }
+    public function actionElenco($id)
+    {
+        $searchModel = new UsersSearch();
+        $dataProvider = $searchModel->searchConvenzione($this->request->queryParams,$id);
+        $model = User::find()->where(['convenzioni_id'=>$id])->one();
+
+        return $this->render('elenco', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'id' => $id,
         ]);
     }
 
