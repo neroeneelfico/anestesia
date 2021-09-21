@@ -45,7 +45,7 @@ class ConvenzioniController extends Controller
         $model = Yii::$app->user->identity;
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save(['convenzioni_id','convenzioni_tempo'])) {
-            Yii::$app->session->setFlash('success', 'La tua scelta è stata registrata. Sarà possibile effettuare una nuova scelta tra 12 ore.');
+            Yii::$app->session->setFlash('success', 'La tua scelta è stata registrata. Sarà possibile effettuare una nuova scelta tra 6 ore.');
             return $this->redirect(['index']);
         }
 
