@@ -22,8 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'codicefiscale')->textInput(['autofocus' => true])->widget(\yii\widgets\MaskedInput::className(),['name'=>'Codice Fiscale','mask' => 'AAAAAA99A99A999A'])->label("Codice Fiscale") ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= Html::checkbox('reveal-password', false, ['id' => 'reveal-password']) ?> <?= Html::label('Mostra password', 'reveal-password') ?>
 
-                <?= $form->field($model, 'rememberMe')->checkbox()->label('Ricordami') ?>
+
+            <?= $form->field($model, 'rememberMe')->checkbox()->label('Ricordami') ?>
 
 
                 <div class="form-group">
@@ -34,3 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<?php
+$this->registerJs("jQuery('#reveal-password').change(function(){jQuery('#loginform-password').attr('type',this.checked?'text':'password');})");
+?>
