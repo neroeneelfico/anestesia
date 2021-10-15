@@ -43,8 +43,14 @@ AppAsset::register($this);
     } else {
         $menuItems[] =
             ['label' => 'Il mio profilo', 'url' => ['/site/profilo']];
+       // $menuItems[] =
+       //     ['label' => 'Convenzioni', 'url' => ['/convenzioni/index']];
+         $menuItems[] =
+             ['label' => 'Pazienti', 'url' => ['/pazienti/index']];
         $menuItems[] =
-            ['label' => 'Convenzioni', 'url' => ['/convenzioni/index']];
+            ['label' => 'Procedure', 'url' => ['/procedure/index']];
+        $menuItems[] =
+            ['label' => 'Dolore', 'url' => ['/dolore/index']];
 
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
