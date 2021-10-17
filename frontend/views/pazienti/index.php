@@ -25,11 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             [
                 'attribute' => 'idpazienti',
-                'label' => 'Id Pazienti',
+                'label' => 'Procedure',
                 'format' => 'raw',
                 'value' => function ($model) {
                     return Html::a(
-                        $model->idpazienti,
+                       "Procedure",
                         ['listaprocedure', 'id' => $model->idpazienti],
                         [
                             'title' => 'View',
