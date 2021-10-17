@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
        // 'filterModel' => $searchModel,
         'columns' => [
             'idprocedure',
+            'tipointervento',
             'tipoanestesia',
             'analgesiaperiop',
             'analgesiapostop',
@@ -33,7 +34,34 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label'=>'Anestesista',
 
             ],
+            [
 
+                'attribute' => 'vasDolore',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    $valutazione = explode(',', $model->vasdolore);
+                    $testo = "";
+                    foreach ($valutazione as $value) {
+                        $testo = $testo . $value . "<br>";
+                    }
+                    return $testo;
+                },
+                'label' => 'VAS Dolore',
+            ],
+            [
+
+                'attribute' => 'orarioDolore',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    $valutazione = explode(',', $model->orariodolore);
+                    $testo = "";
+                    foreach ($valutazione as $value) {
+                        $testo = $testo . $value . "<br>";
+                    }
+                    return $testo;
+                },
+                'label' => 'Orario valutazione',
+            ],
         ],
     ]); ?>
 

@@ -21,6 +21,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tipoanestesia')->dropDownList(['Generale' => 'Generale', 'Plessica' => 'Plessica','Spinale'=>'Spinale','Epidurale'=>'Epidurale'],['prompt'=>'Seleziona il tipo di Anestesia'])->label("Tipo Anestesia");
     ?>
+    <?= $form->field($model, 'tipointervento')->textInput()->label('Intervento') ?>
 
     <?= $form->field($model, 'analgesiaperiop')->textarea(['rows' => 6])->label('Analgesia perioperatoria') ?>
 

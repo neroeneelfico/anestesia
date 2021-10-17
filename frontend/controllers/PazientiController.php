@@ -58,6 +58,7 @@ class PazientiController extends Controller
         return $this->render('elencoprocedure', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $model,
             'id' => $id,
         ]);
     }

@@ -10,6 +10,7 @@ use Yii;
  * @property int $idprocedure
  * @property int $idpazienti
  * @property int $idanestesista
+ * @property int $tipointervento
  * @property string|null $tipoanestesia
  * @property string|null $analgesiaperiop
  * @property string|null $analgesiapostop
@@ -20,6 +21,7 @@ use Yii;
  */
 class Procedure extends \yii\db\ActiveRecord
 {
+    public $conteggio;
     /**
      * {@inheritdoc}
      */
@@ -34,9 +36,9 @@ class Procedure extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idpazienti',], 'required'],
+            [['idpazienti','tipoanestesia'], 'required'],
             [['idpazienti', ], 'integer'],
-            [['analgesiaperiop', 'analgesiapostop'], 'string'],
+            [['analgesiaperiop', 'analgesiapostop', 'tipointervento'], 'string'],
             [['tipoanestesia'], 'string', 'max' => 45],
             [['idpazienti'], 'exist', 'skipOnError' => true, 'targetClass' => Pazienti::className(), 'targetAttribute' => ['idpazienti' => 'idpazienti']],
         ];
@@ -58,6 +60,7 @@ class Procedure extends \yii\db\ActiveRecord
             'idpazienti' => 'Idpazienti',
             'idanestesista' => 'Idanestesista',
             'tipoanestesia' => 'Tipologia Anestesia',
+            'tipointervento' => 'Intervento',
             'analgesiaperiop' => 'Analgesia Perioperatoria',
             'analgesiapostop' => 'Analgesia Postoperatoria',
         ];
@@ -73,12 +76,25 @@ class Procedure extends \yii\db\ActiveRecord
         return $this->hasMany(Dolore::className(), ['idprocedure' => 'idprocedure']);
     }
 
+    public function getVasDolore(){
+        $dolorearray = [];
+        foreach($this->dolores as $dolore) {
+           $dolorearray[] = "VAS ".$dolore->scaladolore;
+        }
+        return implode(',',$dolorearray);
+    }
     public function getOrarioDolore(){
         $dolorearray = [];
         foreach($this->dolores as $dolore) {
-           $dolorearray[] = $dolore->scaladolore. "------------------".$dolore->orariodolore;
+            $dolorearray[] = $dolore->orariodolore;
         }
         return implode(',',$dolorearray);
+    }
+
+    public function getConteggiodolore(){
+        $conteggio = $this->hasMany(Dolore::className(), ['idprocedure' => 'idprocedure'])->count();
+        if($conteggio == 0) return false;
+        else return true;
     }
 
     /**

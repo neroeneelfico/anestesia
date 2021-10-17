@@ -7,17 +7,17 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Procedure */
 
 $this->title = $model->idprocedure;
-$this->params['breadcrumbs'][] = ['label' => 'Procedures', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Procedure', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="procedure-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Procedura effettuata</h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'idprocedure' => $model->idprocedure, 'idpazienti' => $model->idpazienti, 'idanestesista' => $model->idanestesista], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'idprocedure' => $model->idprocedure, 'idpazienti' => $model->idpazienti, 'idanestesista' => $model->idanestesista], [
+        <?= Html::a('Aggiorna procedura', ['update', 'idprocedure' => $model->idprocedure, 'idpazienti' => $model->idpazienti, 'idanestesista' => $model->idanestesista], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Cancella procedura', ['delete', 'idprocedure' => $model->idprocedure, 'idpazienti' => $model->idpazienti, 'idanestesista' => $model->idanestesista], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -29,40 +29,53 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            'idprocedure',
             [
 
                 'attribute' => 'nomeAnestesista',
 
-                'label'=>'Anestesista di sala',
+                'label' => 'Anestesista di sala',
 
             ],
-            'idprocedure',
+
             [
 
                 'attribute' => 'nomePaziente',
 
-                'label'=>'Paziente',
+                'label' => 'Paziente',
 
             ],
-
+            'tipointervento',
             'tipoanestesia',
             'analgesiaperiop:ntext',
             'analgesiapostop:ntext',
             [
 
+                'attribute' => 'vasDolore',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    $valutazione = explode(',', $model->vasdolore);
+                    $testo = "";
+                    foreach ($valutazione as $value) {
+                        $testo = $testo . $value . "<br>";
+                    }
+                    return $testo;
+                },
+                'label' => 'VAS Dolore',
+            ],
+            [
+
                 'attribute' => 'orarioDolore',
                 'format' => 'raw',
-                'value' => function($model){
-        $valutazione = explode(',',$model->orariodolore);
-        $testo = "";
-        foreach($valutazione as $value){
-            $testo = $testo. $value. "<br>";
-        }
-        return $testo;
+                'value' => function ($model) {
+                    $valutazione = explode(',', $model->orariodolore);
+                    $testo = "";
+                    foreach ($valutazione as $value) {
+                        $testo = $testo . $value . "<br>";
+                    }
+                    return $testo;
                 },
-
-                'label'=>'Valutazione dolore',
-
+                'label' => 'Orario valutazione',
             ],
             //'orariovalutazione'
             //'vas'

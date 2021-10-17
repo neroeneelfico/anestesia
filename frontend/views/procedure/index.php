@@ -23,8 +23,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'rowOptions' => function ($dataProvider, $key, $index, $grid) {
+            if ($dataProvider->conteggiodolore == true) {
+
+                return ['style' => 'background-color:#99ffcc;'];
+
+            }
+        },
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+
             [
 
                 'attribute' => 'nomePaziente',
@@ -40,6 +47,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'nomeAnestesista',
 
                 'label'=>'Anestesista',
+
+            ],
+            [
+
+                'attribute' => 'conteggio',
+                'format' => 'raw',
+                'value' => function ($dataProvider) {
+        if($dataProvider->conteggiodolore == true) return "Valutazione presente";
+        else return "Valutazione NON presente";
+                },
+
+                'label' => 'Valutazione dolore',
 
             ],
 
