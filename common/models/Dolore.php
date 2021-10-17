@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "dolore".
  *
  * @property int $iddolore
+ * @property int $idpazienti
  * @property int $idprocedure
  * @property int $idanestesista
  * @property string|null $orariodolore
@@ -18,12 +19,14 @@ use Yii;
  */
 class Dolore extends \yii\db\ActiveRecord
 {
+
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
         return 'dolore';
+
     }
 
     /**
@@ -33,6 +36,7 @@ class Dolore extends \yii\db\ActiveRecord
     {
         return [
             [['idprocedure', ], 'required'],
+            [['idpazienti'], 'safe'],
             [['idprocedure', 'scaladolore'], 'integer'],
             [['orariodolore'], 'string', 'max' => 30],
             [['idprocedure'], 'exist', 'skipOnError' => true, 'targetClass' => Procedure::className(), 'targetAttribute' => ['idprocedure' => 'idprocedure']],
@@ -51,10 +55,11 @@ class Dolore extends \yii\db\ActiveRecord
     {
         return [
             'iddolore' => 'Iddolore',
-            'idprocedure' => 'Idprocedure',
+            'idprocedure' => 'ID procedura',
             'idanestesista' => 'Idanestesista',
-            'orariodolore' => 'Orariodolore',
-            'scaladolore' => 'Scaladolore',
+            'idpazienti' => 'ID del paziente',
+            'orariodolore' => 'Orario valutazione',
+            'scaladolore' => 'VAS',
         ];
     }
 
@@ -76,6 +81,16 @@ class Dolore extends \yii\db\ActiveRecord
     public function getIdprocedure0()
     {
         return $this->hasOne(Procedure::className(), ['idprocedure' => 'idprocedure']);
+    }
+
+    public function getIdpazienti(){
+        return $this->idprocedure0->idpazienti;
+    }
+
+    public function getNomeProcAnestesista() {
+
+        return $this->idprocedure0->nome." ".$this->idprocedure0->cognome;
+
     }
 
     /**

@@ -16,16 +16,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <br>
     <br>
+    <h3>Hai effettuato </h3><br>
+    <?= Html::a($agenerale.' Anestesie generali', ['pazienti/procedurepersonali','idanestesista'=>Yii::$app->user->id,'tipoanestesia'=>'Generale']) ?><br>
+    <?= Html::a($aplessica.' Anestesie plessiche', ['pazienti/procedurepersonali','idanestesista'=>Yii::$app->user->id,'tipoanestesia'=>'Plessica']) ?><br>
+    <?= Html::a($aspinale.' Anestesie spinali', ['pazienti/procedurepersonali','idanestesista'=>Yii::$app->user->id,'tipoanestesia'=>'Spinale']) ?><br>
+    <?= Html::a($aepidurale.' Anestesie epidurali', ['pazienti/procedurepersonali','idanestesista'=>Yii::$app->user->id,'tipoanestesia'=>'Epidurale']) ?><br>
+
     <?php
+    /*
     if($model->residenza != ""){
         echo "La residenza da te scelta è stata approvata: <b>".$model->residenza."</b>";
     }
     else {
         echo "Non hai selezionato nessuna priorità di residenza";
     }
+*/
     ?>
     <br><br>
     <?php
+    /*
     if($model->convenzioni_id != ""){
         $datainserita = new DateTime($model->convenzioni_tempo);
         $dataattuale = date('Y-m-d H:i:s');
@@ -45,6 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
     else {
         echo "Non hai ancora selezionato nessuna convenzione. Accedi nella sezione <b>Convenzioni</b> per procedere";
     }
+    */
     ?>
 
 </div>

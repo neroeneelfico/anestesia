@@ -36,5 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'ospedale',
         ],
     ]) ?>
+    <?= Html::a('Inserisci Procedura', ['procedure/create', 'idpazienti' => $model->idpazienti], ['class' => 'btn btn-primary']) ?>
+
 
 </div>

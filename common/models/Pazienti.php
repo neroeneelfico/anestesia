@@ -66,7 +66,8 @@ class Pazienti extends \yii\db\ActiveRecord
         return $this->hasMany(Procedure::className(), ['idpazienti' => 'idpazienti']);
     }
 
-    /**
+
+        /**
      * {@inheritdoc}
      * @return PazientiQuery the active query used by this AR class.
      */

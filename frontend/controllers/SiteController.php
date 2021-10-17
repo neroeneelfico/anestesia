@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Procedure;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -81,7 +82,12 @@ class SiteController extends Controller
     public function actionProfilo()
     {
         $model = Yii::$app->user->identity;
-        return $this->render('profilo', ['model' => $model]);
+        $agenerale = Procedure::find()->where(['idanestesista' => Yii::$app->user->id])->andWhere(['tipoanestesia'=>'Generale'])->count();
+        $aplessica = Procedure::find()->where(['idanestesista' => Yii::$app->user->id])->andWhere(['tipoanestesia'=>'Plessica'])->count();
+        $aspinale = Procedure::find()->where(['idanestesista' => Yii::$app->user->id])->andWhere(['tipoanestesia'=>'Spinale'])->count();
+        $aepidurale = Procedure::find()->where(['idanestesista' => Yii::$app->user->id])->andWhere(['tipoanestesia'=>'Epidurale'])->count();
+
+        return $this->render('profilo', ['model' => $model,'agenerale'=>$agenerale,'aplessica'=>$aplessica,'aspinale'=>$aspinale,'aepidurale'=>$aepidurale]);
     }
 
     /**

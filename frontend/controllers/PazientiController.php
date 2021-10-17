@@ -61,6 +61,20 @@ class PazientiController extends Controller
             'id' => $id,
         ]);
     }
+
+    public function actionProcedurepersonali($idanestesista,$tipoanestesia)
+    {
+        $searchModel = new SearchProcedure();
+        $dataProvider = $searchModel->searchPersProcedura($this->request->queryParams, $idanestesista,$tipoanestesia);
+
+
+        $model = Procedure::find()->where(['idanestesista'=>$idanestesista,'tipoanestesia'=>$tipoanestesia])->one();
+
+        return $this->render('elencoprocedure', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
     /**
      * Displays a single Pazienti model.
      * @param int $idpazienti Idpazienti

@@ -29,13 +29,45 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            [
+
+                'attribute' => 'nomeAnestesista',
+
+                'label'=>'Anestesista di sala',
+
+            ],
             'idprocedure',
-            'idpazienti',
-            'idanestesista',
+            [
+
+                'attribute' => 'nomePaziente',
+
+                'label'=>'Paziente',
+
+            ],
+
             'tipoanestesia',
             'analgesiaperiop:ntext',
             'analgesiapostop:ntext',
+            [
+
+                'attribute' => 'orarioDolore',
+                'format' => 'raw',
+                'value' => function($model){
+        $valutazione = explode(',',$model->orariodolore);
+        $testo = "";
+        foreach($valutazione as $value){
+            $testo = $testo. $value. "<br>";
+        }
+        return $testo;
+                },
+
+                'label'=>'Valutazione dolore',
+
+            ],
+            //'orariovalutazione'
+            //'vas'
         ],
     ]) ?>
+    <?= Html::a('Valuta dolore', ['dolore/create', 'idprocedura' => $model->idprocedure], ['class' => 'btn btn-primary']) ?>
 
 </div>

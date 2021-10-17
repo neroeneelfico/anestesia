@@ -11,9 +11,12 @@ use yii\widgets\ActiveForm;
 <div class="procedure-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
+    <?php
+    $idpaziente = isset($_GET['idpazienti']) ? $_GET['idpazienti'] : 0;
+    ?>
     <?= $form->field($model, 'idpazienti')->textInput([
-        'type' => 'number'
+        'type' => 'number',
+        'value' => $idpaziente
     ])->label("ID del paziente") ?>
 
     <?= $form->field($model, 'tipoanestesia')->dropDownList(['Generale' => 'Generale', 'Plessica' => 'Plessica','Spinale'=>'Spinale','Epidurale'=>'Epidurale'],['prompt'=>'Seleziona il tipo di Anestesia'])->label("Tipo Anestesia");

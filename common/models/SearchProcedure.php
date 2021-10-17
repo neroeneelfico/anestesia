@@ -100,4 +100,35 @@ class SearchProcedure extends Procedure
 
         return $dataProvider;
     }
+    public function searchPersProcedura($params,$idanestesista,$tipoanestesia)
+    {
+        $query = Procedure::find();
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'idprocedure' => $this->idprocedure,
+            'idpazienti' => $this->idpazienti,
+            'idanestesista' => $idanestesista,
+        ]);
+
+        $query->andFilterWhere(['like', 'tipoanestesia', $tipoanestesia])
+            ->andFilterWhere(['like', 'analgesiaperiop', $this->analgesiaperiop])
+            ->andFilterWhere(['like', 'analgesiapostop', $this->analgesiapostop]);
+
+        return $dataProvider;
+    }
 }

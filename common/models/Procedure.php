@@ -54,12 +54,12 @@ class Procedure extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idprocedure' => 'Idprocedure',
+            'idprocedure' => 'Id della procedura',
             'idpazienti' => 'Idpazienti',
             'idanestesista' => 'Idanestesista',
-            'tipoanestesia' => 'Tipoanestesia',
-            'analgesiaperiop' => 'Analgesiaperiop',
-            'analgesiapostop' => 'Analgesiapostop',
+            'tipoanestesia' => 'Tipologia Anestesia',
+            'analgesiaperiop' => 'Analgesia Perioperatoria',
+            'analgesiapostop' => 'Analgesia Postoperatoria',
         ];
     }
 
@@ -71,6 +71,14 @@ class Procedure extends \yii\db\ActiveRecord
     public function getDolores()
     {
         return $this->hasMany(Dolore::className(), ['idprocedure' => 'idprocedure']);
+    }
+
+    public function getOrarioDolore(){
+        $dolorearray = [];
+        foreach($this->dolores as $dolore) {
+           $dolorearray[] = $dolore->scaladolore. "------------------".$dolore->orariodolore;
+        }
+        return implode(',',$dolorearray);
     }
 
     /**
@@ -87,6 +95,13 @@ class Procedure extends \yii\db\ActiveRecord
         return $this->idanestesista0->nome." ".$this->idanestesista0->cognome;
 
     }
+
+    public function getNomePaziente()
+    {
+
+        return $this->idpazienti0->nome . " " . $this->idpazienti0->cognome;
+    }
+
     /**
      * Gets query for [[Idpazienti0]].
      *

@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             [
-                    'attribute' => 'idpazienti',
+                'attribute' => 'idpazienti',
                 'label' => 'Id Pazienti',
                 'format' => 'raw',
                 'value' => function ($model) {
