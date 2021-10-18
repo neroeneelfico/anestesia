@@ -35,7 +35,7 @@ class Dolore extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idprocedure', ], 'required'],
+            [['idprocedure', 'orariodolore','scaladolore'], 'required'],
             [['idpazienti'], 'safe'],
             [['idprocedure', 'scaladolore'], 'integer'],
             [['orariodolore'], 'string', 'max' => 30],
