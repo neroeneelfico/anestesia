@@ -70,8 +70,66 @@
     <div>
     <input type="text" size="1" value="50.8" disabled name="ch">
     </div>
+<br><br>
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <table class="table table-borderless">
+<tr>
+    <td> <h3> Compenso H2Co3- atteso</h3>
+        <table class="table table-bordered w-auto">
+
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col-1">Acuta</th>
+                <th scope="col-2">Cronica</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Acidosi Respiratoria</th>
+                <td><input type="text" size="1" value="26.8" disabled name="acrespac"></td>
+                <td><input type="text" size="1" value="35.2" disabled name="acrespcr"></td>
+            </tr>
+            <tr>
+                <th scope="row">Alcalosi Respiratoria</th>
+                <td><input type="text" size="1" value="" disabled name="alcrespac"></td>
+                <td><input type="text" size="1" value="" disabled name="alcrespcr"></td>
+            </tr>
+            </tbody>
+        </table></td>
+    <td> <h3> Compenso Co2 atteso</h3>
+        <table class="table table-bordered">
+
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col-1">Metabolica</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Acidosi</th>
+                <td><input type="text" size="1" value="" disabled name="acmet"></td>
+            </tr>
+            <tr>
+                <th scope="row">Alcalosi</th>
+                <td><input type="text" size="1" value="" disabled name="alcmet"></td>
+            </tr>
+            </tbody>
+        </table></td>
+</tr>
+            </table>
 
 
+        </div></div>
+    <div class="row justify-content-center">
+        <div class="col-auto">
+
+            <br>
+
+
+        </div></div>
 </blockquote>
 
 <script>
@@ -93,11 +151,54 @@
         co2 = $("input[name=co2]").val();
         hco3 = $("input[name=hco3]").val();
 
-        ch = (23.9 * co2/hco3).toFixed(2);
+        ch = (23.9 * co2/hco3).toFixed(1);
         ph = Math.abs(Math.log10(ch/1000000000).toFixed(2));
+
+
+        if(co2>43) {
+            acrespac = 24 + (0.1 * (co2 - 40));
+            acrespcr = 24+ (0.4 * (co2 - 40));
+            alcrespac = "";
+            alcrespcr = "";
+        }
+        else if (co2 < 37) {
+            alcrespac = 24 - (0.2 * (40-co2));
+            alcrespcr = 24 - (0.5 * (40-co2));
+            acrespac = "";
+            acrespcr = "";
+        }
+        else {
+            acrespac = "";
+            acrespcr = "";
+            alcrespac = "";
+            alcrespcr = "";
+        }
+
+        if(hco3 < 23) {
+            acmet = 40 - (1.3*(24-hco3));
+            alcmet = "";
+        }
+        else if(hco3 > 25)
+        {
+            alcmet = 40 + (0.7*(hco3 -24));
+            acmet = "";
+        }
+        else {
+            acmet = "";
+            alcmet = "";
+        }
+
+
 
         $("input[name=ph]").val(ph);
         $("input[name=ch]").val(ch);
+        $("input[name=acrespac]").val(acrespac);
+        $("input[name=acrespcr]").val(acrespcr);
+        $("input[name=alcrespac]").val(alcrespac);
+        $("input[name=alcrespcr]").val(alcrespcr);
+        $("input[name=acmet]").val(acmet);
+        $("input[name=alcmet]").val(alcmet);
+
     }
     $( "form" ).submit(function( event ) {
         if ( $( "input" ).first().val() === "correct" ) {
