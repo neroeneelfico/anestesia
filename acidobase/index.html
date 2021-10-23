@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -34,162 +41,243 @@
             transform: rotate(45deg);
             -webkit-transform: rotate(45deg);
         }
+        .containerph {
+            background-color: #b2dcff;
+        }
+        #tipologiaalt {
+            border: 1px solid;
+            border-color: #ff6b3d;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 20px 0;
+        }
+
     </style>
 </head>
 <body>
 <blockquote class="blockquote text-center">
 
-<p class="h1">Henderson - Hasselbalch e compensi</p>
+    <p class="h1">Henderson - Hasselbalch e compensi</p>
+    <br><br>
+    <div class="containerph">
+        <table class="table table-borderless">
+            <thead>
+            <tr>
+                <th scope="col">CO2</th>
+                <th scope="col">HCO3-</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="button" value="<" onclick="left('co2')">
+                    <input type="text" size="1" value="68" name="co2" id="co2" maxlength="2">
+                    <input type="button" value=">" onclick="right('co2')"></td>
+                <td><input type="button" value="<" onclick="left('hco3')">
+                    <input type="text" size="1" value="32" name="hco3" id="hco3" maxlength="2">
+                    <input type="button" value=">" onclick="right('hco3')"></td>
+            </tr>
+            </tbody>
+        </table>
 
-    <table class="table table-borderless">
-        <thead>
-        <tr>
-            <th scope="col">CO2</th>
-            <th scope="col">HCO3-</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td> <input type="button" value="<" onclick="left('co2')">
-                <input type="text" size="1" value="68" disabled name="co2">
-                <input type="button" value=">" onclick="right('co2')"></td>
-            <td>        <input type="button" value="<" onclick="left('hco3')">
-                <input type="text" size="1" value="32" disabled name="hco3">
-                <input type="button" value=">" onclick="right('hco3')"></td>
-        </tr>
-        </tbody>
-    </table>
+        <div class="row justify-content-center">
 
-    <div>
-       pH<br>
-        <input type="text" size="1" value="7.29" disabled name="ph" class="p-3 mb-2 bg-danger text-white">
+            <table class="table-borderless" id="tabellaph" >
+                <tr>
+                    <td  class="col-md-2">pH</td>
+                    <td style="LINE-HEIGHT:50px" class="col-md-2"><input type="text" size="1" value="7.29" disabled name="ph"
+                               class="mb-2 bg-danger text-white"></td>
+                </tr>
+                <tr>
+                    <td  class="col-md-2">cH(nmol/l)</td>
+                    <td style="LINE-HEIGHT:50px" class="col-md-2"><input type="text" size="1" value="50.8" disabled name="ch"></td>
+                </tr>
+
+
+                </tr>
+            </table>
+            <br>
+        </div>
     </div>
 
 
-    cH(nmol/l)<br>
-    <div>
-    <input type="text" size="1" value="50.8" disabled name="ch">
-    </div>
-<br><br>
+
     <div class="row justify-content-center">
+
         <div class="col-auto">
+            <div id="tipologiaalt">Tipologia disturbo: Acidosi</div>
+            <br><br>
             <table class="table table-borderless">
-<tr>
-    <td> <h3> Compenso H2Co3- atteso</h3>
-        <table class="table table-bordered w-auto">
+                <tr>
+                    <td><h3> Compenso H2CO3- atteso</h3>
+                        <table class="table table-bordered w-auto">
 
-            <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col-1">Acuta</th>
-                <th scope="col-2">Cronica</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">Acidosi Respiratoria</th>
-                <td><input type="text" size="1" value="26.8" disabled name="acrespac"></td>
-                <td><input type="text" size="1" value="35.2" disabled name="acrespcr"></td>
-            </tr>
-            <tr>
-                <th scope="row">Alcalosi Respiratoria</th>
-                <td><input type="text" size="1" value="" disabled name="alcrespac"></td>
-                <td><input type="text" size="1" value="" disabled name="alcrespcr"></td>
-            </tr>
-            </tbody>
-        </table></td>
-    <td> <h3> Compenso Co2 atteso</h3>
-        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col-1">Acuta</th>
+                                <th scope="col-2">Cronica</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Acidosi Respiratoria</th>
+                                <td><input type="text" size="1" value="26.8" disabled name="acrespac"></td>
+                                <td><input type="text" size="1" value="35.2" disabled name="acrespcr"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Alcalosi Respiratoria</th>
+                                <td><input type="text" size="1" value="" disabled name="alcrespac"></td>
+                                <td><input type="text" size="1" value="" disabled name="alcrespcr"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td><h3> Compenso CO2 atteso</h3>
+                        <table class="table table-bordered">
 
-            <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col-1">Metabolica</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">Acidosi</th>
-                <td><input type="text" size="1" value="" disabled name="acmet"></td>
-            </tr>
-            <tr>
-                <th scope="row">Alcalosi</th>
-                <td><input type="text" size="1" value="" disabled name="alcmet"></td>
-            </tr>
-            </tbody>
-        </table></td>
-</tr>
+                            <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col-1">Metabolica</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Acidosi</th>
+                                <td><input type="text" size="1" value="" disabled name="acmet"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Alcalosi</th>
+                                <td><input type="text" size="1" value="" disabled name="alcmet"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
             </table>
 
 
-        </div></div>
+        </div>
+    </div>
     <div class="row justify-content-center">
         <div class="col-auto">
 
             <br>
 
 
-        </div></div>
+        </div>
+    </div>
 </blockquote>
 
 <script>
+    // Restricts input for the given textbox to the given inputFilter function.
+    function setInputFilter(textbox, inputFilter) {
+        ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+            textbox.addEventListener(event, function() {
+                if (inputFilter(this.value)) {
+                    this.oldValue = this.value;
+                    this.oldSelectionStart = this.selectionStart;
+                    this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty("oldValue")) {
+                    this.value = this.oldValue;
+                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                } else {
+                    this.value = "";
+                }
+            });
+        });
+    }
+    setInputFilter(document.getElementById("co2"), function(value) {
+        return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+    });
+    setInputFilter(document.getElementById("hco3"), function(value) {
+        return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+    });
+
     function left(tipo) {
-        valore = $("input[name="+tipo+"]").val();
+        valore = $("input[name=" + tipo + "]").val();
         valore--;
-        $("input[name="+tipo+"]").val(valore);
+        $("input[name=" + tipo + "]").val(valore);
         aggiornamento();
 
     }
+
     function right(tipo) {
-        valore = $("input[name="+tipo+"]").val();
+        valore = $("input[name=" + tipo + "]").val();
         valore++;
-        $("input[name="+tipo+"]").val(valore);
+        $("input[name=" + tipo + "]").val(valore);
         aggiornamento();
     }
 
-    function aggiornamento(){
+    function controlloColore(phvalue) {
+        $("input[name=ph]").removeClass("bg-danger");
+        $("input[name=ph]").removeClass("bg-success");
+        $("input[name=ph]").removeClass("bg-warning");
+        $("input[name=ph]").removeClass("bg-primary");
+
+        if (phvalue <= 7.45 && phvalue >= 7.35) {
+            $("input[name=ph]").toggleClass("bg-success");
+            $('#tipologiaalt').text("Tipologia disturbo: Normale");
+
+        } else if (phvalue < 7.35 && phvalue >= 7.30) {
+            //colore arancione
+            $("input[name=ph]").toggleClass("bg-warning");
+            $('#tipologiaalt').text("Tipologia disturbo: Acidosi");
+
+        } else if (phvalue > 7.45) {
+            //Colore blu
+            $("input[name=ph]").toggleClass("bg-primary");
+            $('#tipologiaalt').text("Tipologia disturbo: Alcalosi");
+
+
+        } else if (phvalue < 7.30) {
+            //colore rosso
+            $("input[name=ph]").toggleClass("bg-danger");
+            $('#tipologiaalt').text("Tipologia disturbo: Acidosi");
+
+        }
+    }
+
+    function aggiornamento() {
         co2 = $("input[name=co2]").val();
         hco3 = $("input[name=hco3]").val();
 
-        ch = (23.9 * co2/hco3).toFixed(1);
-        ph = Math.abs(Math.log10(ch/1000000000).toFixed(2));
+        ch = (23.9 * co2 / hco3).toFixed(1);
+        ph = Math.abs(Math.log10(ch / 1000000000).toFixed(2));
 
 
-        if(co2>43) {
+        if (co2 > 43) {
             acrespac = 24 + (0.1 * (co2 - 40));
-            acrespcr = 24+ (0.4 * (co2 - 40));
+            acrespcr = 24 + (0.4 * (co2 - 40));
             alcrespac = "";
             alcrespcr = "";
-        }
-        else if (co2 < 37) {
-            alcrespac = 24 - (0.2 * (40-co2));
-            alcrespcr = 24 - (0.5 * (40-co2));
+        } else if (co2 < 37) {
+            alcrespac = 24 - (0.2 * (40 - co2));
+            alcrespcr = 24 - (0.5 * (40 - co2));
             acrespac = "";
             acrespcr = "";
-        }
-        else {
+        } else {
             acrespac = "";
             acrespcr = "";
             alcrespac = "";
             alcrespcr = "";
         }
 
-        if(hco3 < 23) {
-            acmet = 40 - (1.3*(24-hco3));
+        if (hco3 < 23) {
+            acmet = 40 - (1.3 * (24 - hco3));
             alcmet = "";
-        }
-        else if(hco3 > 25)
-        {
-            alcmet = 40 + (0.7*(hco3 -24));
+        } else if (hco3 > 25) {
+            alcmet = 40 + (0.7 * (hco3 - 24));
             acmet = "";
-        }
-        else {
+        } else {
             acmet = "";
             alcmet = "";
         }
 
 
-
+        controlloColore(ph);
         $("input[name=ph]").val(ph);
         $("input[name=ch]").val(ch);
         $("input[name=acrespac]").val(acrespac);
@@ -200,13 +288,14 @@
         $("input[name=alcmet]").val(alcmet);
 
     }
-    $( "form" ).submit(function( event ) {
-        if ( $( "input" ).first().val() === "correct" ) {
-            $( "span" ).text( "Validated..." ).show();
+
+    $("form").submit(function (event) {
+        if ($("input").first().val() === "correct") {
+            $("span").text("Validated...").show();
             return;
         }
 
-        $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
+        $("span").text("Not valid!").show().fadeOut(1000);
         event.preventDefault();
     });
 </script>
