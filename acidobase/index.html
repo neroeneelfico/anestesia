@@ -53,6 +53,9 @@
             border-collapse: separate;
             border-spacing: 20px 0;
         }
+        .tabcompenso {
+            font-size: 14px;
+        }
 
     </style>
 </head>
@@ -72,7 +75,7 @@
             <tbody>
             <tr>
                 <td><input type="button" value="<" onclick="left('co2')">
-                    <input type="text" size="1" value="68" name="co2" id="co2" maxlength="2">
+                    <input type="text" size="1" value="68" name="co2" id="co2" maxlength="3">
                     <input type="button" value=">" onclick="right('co2')"></td>
                 <td><input type="button" value="<" onclick="left('hco3')">
                     <input type="text" size="1" value="32" name="hco3" id="hco3" maxlength="2">
@@ -102,15 +105,17 @@
     </div>
 
 
-
+<br>
     <div class="row justify-content-center">
 
         <div class="col-auto">
             <div id="tipologiaalt">Tipologia disturbo: Acidosi</div>
-            <br><br>
-            <table class="table table-borderless">
+            <br>            <h3>Compensi attesi nei disturbi semplici</h3>
+            <hr><br>
+            <div class="tabcompenso">
+            <table class="table table-borderless col-md-3 table-sm">
                 <tr>
-                    <td><h3> Compenso H2CO3- atteso</h3>
+                    <td><h5> Compenso H2CO3- atteso</h5>
                         <table class="table table-bordered w-auto">
 
                             <thead>
@@ -134,8 +139,8 @@
                             </tbody>
                         </table>
                     </td>
-                    <td><h3> Compenso CO2 atteso</h3>
-                        <table class="table table-bordered">
+                    <td><h5> Compenso CO2 atteso</h5>
+                        <table class="table table-bordered col-md-3">
 
                             <thead>
                             <tr>
@@ -157,21 +162,18 @@
                     </td>
                 </tr>
             </table>
-
-
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-auto">
-
-            <br>
-
-
+            </div>
         </div>
     </div>
 </blockquote>
 
 <script>
+    $("#co2").on("change",function() {
+            aggiornamento();
+    });
+    $("#hco3").on("change",function() {
+        aggiornamento();
+    });
     // Restricts input for the given textbox to the given inputFilter function.
     function setInputFilter(textbox, inputFilter) {
         ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
@@ -244,6 +246,18 @@
         co2 = $("input[name=co2]").val();
         hco3 = $("input[name=hco3]").val();
 
+        if(co2 <5)
+            co2 = 5;
+        else if(co2>150)
+            co2 = 150;
+
+        if(hco3 <3)
+            hco3 = 3;
+        else if (hco3 > 55)
+            hco3 = 55;
+
+        $("input[name=co2]").val(co2);
+        $("input[name=hco3]").val(hco3);
         ch = (23.9 * co2 / hco3).toFixed(1);
         ph = Math.abs(Math.log10(ch / 1000000000).toFixed(2));
 
