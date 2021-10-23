@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+<blockquote class="blockquote text-center">
+
+<p class="h1">Henderson - Hasselbalch e compensi</p>
+
+    <table class="table table-borderless">
+        <thead>
+        <tr>
+            <th scope="col">CO2</th>
+            <th scope="col">HCO3-</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td> <input type="button" value="<" onclick="left('co2')">
+                <input type="text" size="1" value="68" disabled name="co2">
+                <input type="button" value=">" onclick="right('co2')"></td>
+            <td>        <input type="button" value="<" onclick="left('hco3')">
+                <input type="text" size="1" value="32" disabled name="hco3">
+                <input type="button" value=">" onclick="right('hco3')"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div>
+       pH<br>
+        <input type="text" size="1" value="7.29" disabled name="ph" class="p-3 mb-2 bg-danger text-white">
+    </div>
+
+
+    cH(nmol/l)<br>
+    <div>
+    <input type="text" size="1" value="50.8" disabled name="ch">
+    </div>
+
+
+</blockquote>
+
+<script>
+    function left(tipo) {
+        valore = $("input[name="+tipo+"]").val();
+        valore--;
+        $("input[name="+tipo+"]").val(valore);
+        aggiornamento();
+
+    }
+    function right(tipo) {
+        valore = $("input[name="+tipo+"]").val();
+        valore++;
+        $("input[name="+tipo+"]").val(valore);
+        aggiornamento();
+    }
+
+    function aggiornamento(){
+        co2 = $("input[name=co2]").val();
+        hco3 = $("input[name=hco3]").val();
+
+        ch = (23.9 * co2/hco3).toFixed(2);
+        ph = Math.abs(Math.log10(ch/1000000000).toFixed(2));
+
+        $("input[name=ph]").val(ph);
+        $("input[name=ch]").val(ch);
+    }
+    $( "form" ).submit(function( event ) {
+        if ( $( "input" ).first().val() === "correct" ) {
+            $( "span" ).text( "Validated..." ).show();
+            return;
+        }
+
+        $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
+        event.preventDefault();
+    });
+</script>
+</body>
+</html>
